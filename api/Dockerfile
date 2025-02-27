@@ -27,7 +27,11 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends gcc g++ libc-dev libffi-dev libgmp-dev libmpfr-dev libmpc-dev
 
 # Install Python dependencies
-COPY pyproject.toml poetry.lock ./
+COPY pyproject.toml ./
+# Copy the lock file if it exists (but we'll regenerate it anyway)
+COPY poetry.lock* ./
+# Regenerate the lock file to ensure it matches the current environment
+RUN poetry lock
 RUN poetry install --sync --no-cache --no-root
 
 # production stage

@@ -64,6 +64,10 @@ services:
     networks:
       - ssrf_proxy_network
 
+
+
+
+
   # plugin daemon
   plugin_daemon:
     image: langgenius/dify-plugin-daemon:0.0.2-local
