@@ -1,10 +1,11 @@
 #!/usr/bin/env python
+import getpass
 import os
 import subprocess
-import sys
-import getpass
 from pathlib import Path
+
 from dotenv import load_dotenv
+
 
 def reset_database():
     """Reset the PostgreSQL database using direct commands."""
@@ -109,6 +110,7 @@ def reset_database():
         # Clear password from environment for security
         if 'PGPASSWORD' in os.environ:
             del os.environ['PGPASSWORD']
+
 
 if __name__ == "__main__":
     reset_database() 

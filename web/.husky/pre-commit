@@ -17,25 +17,31 @@ do
     fi
 done
 
+# Get git repository root directory
+GIT_ROOT=$(git rev-parse --show-toplevel)
+
 # run linters based on the modified modules
 
 if $api_modified; then
     echo "Running Ruff linter on api module"
 
     # python style checks rely on `ruff` in path
-    if ! command -v ruff &> /dev/null; then
-        echo "Installing linting tools (Ruff, dotenv-linter ...) ..."
-        poetry install -C api --only lint
+    if ! command -v poetry &> /dev/null; then
+        echo "Error: Poetry is not installed or not in PATH"
+        exit 1
     fi
 
+    echo "Installing linting tools (Ruff, dotenv-linter ...) ..."
+    (cd "$GIT_ROOT/api" && poetry install --only lint)
+
+    # Use poetry run to ensure ruff is executed within the poetry environment
     # run Ruff linter auto-fixing
-    ruff check --fix ./api
+    (cd "$GIT_ROOT/api" && poetry run ruff check --fix "$GIT_ROOT/api")
 
     # run Ruff linter checks
-    ruff check --preview ./api || status=$?
+    (cd "$GIT_ROOT/api" && poetry run ruff check --preview "$GIT_ROOT/api") || status=$?
 
     status=${status:-0}
-
 
     if [ $status -ne 0 ]; then
       echo "Ruff linter on api module error, exit code: $status"
