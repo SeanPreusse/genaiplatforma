@@ -74,20 +74,20 @@ python scripts/reset_db
 
 for var in \
   "STORAGE_TYPE=s3" \
-  "S3_ENDPOINT=https://iurht3riuhsgen2.s3.ap-southeast-2.amazonaws.com" \
-  "S3_REGION=ap-southeast-2” \
-  "S3_BUCKET_NAME=genai" \
+  "S3_ENDPOINT=https://YOUR-S3-BUCKET.s3.ap-southeast-2.amazonaws.com" \
+  "S3_REGION=ap-southeast-2" \
+  "S3_BUCKET_NAME=your-bucket-name" \
   "S3_ACCESS_KEY=YOUR_AWS_ACCESS_KEY_ID" \
   "S3_SECRET_KEY=YOUR_AWS_SECRET_ACCESS_KEY" \
   "NGINX_HTTPS_ENABLED=true" \
-  "NGINX_SERVER_NAME=chatbot.techstak.org" \
-  "NGINX_CLIENT_MAX_BODY_SIZE=100m” \
-  "UPLOAD_FILE_BATCH_LIMIT=10” \
-  "UPLOAD_FILE_SIZE_LIMIT=60” \
-  "NGINX_SSL_CERT_FILENAME=dify.crt" \
-  "NGINX_SSL_CERT_KEY_FILENAME=dify.key" \
-  "CERTBOT_EMAIL=sppreus@gmail.com" \
-  "CERTBOT_DOMAIN=chatbot.techstak.org" \
+  "NGINX_SERVER_NAME=your-domain.example.org" \
+  "NGINX_CLIENT_MAX_BODY_SIZE=100m" \
+  "UPLOAD_FILE_BATCH_LIMIT=10" \
+  "UPLOAD_FILE_SIZE_LIMIT=60" \
+  "NGINX_SSL_CERT_FILENAME=your-cert.crt" \
+  "NGINX_SSL_CERT_KEY_FILENAME=your-key.key" \
+  "CERTBOT_EMAIL=your-email@example.com" \
+  "CERTBOT_DOMAIN=your-domain.example.org" \
   "CERTBOT_OPTIONS=--non-interactive --agree-tos"
 do
   key=$(echo "$var" | cut -d= -f1)
@@ -105,19 +105,19 @@ done
 
 for var in \
   "STORAGE_TYPE=azure-blob" \
-  "AZURE_BLOB_ACCOUNT_NAME=iurht3riuhsgen2" \
+  "AZURE_BLOB_ACCOUNT_NAME=your-storage-account-name" \
   "AZURE_BLOB_ACCOUNT_KEY=YOUR_AZURE_STORAGE_ACCOUNT_KEY" \
-  "AZURE_BLOB_CONTAINER_NAME=genai" \
-  "AZURE_BLOB_ACCOUNT_URL=https://iurht3riuhsgen2.blob.core.windows.net" \
+  "AZURE_BLOB_CONTAINER_NAME=your-container-name" \
+  "AZURE_BLOB_ACCOUNT_URL=https://your-account.blob.core.windows.net" \
   "NGINX_HTTPS_ENABLED=false" \
-  "NGINX_SERVER_NAME=assistant.argent.com.au" \
+  "NGINX_SERVER_NAME=your-domain.example.com" \
   "NGINX_CLIENT_MAX_BODY_SIZE=100m" \
   "UPLOAD_FILE_BATCH_LIMIT=10" \
   "UPLOAD_FILE_SIZE_LIMIT=60" \
-  "NGINX_SSL_CERT_FILENAME=dify.crt" \
-  "NGINX_SSL_CERT_KEY_FILENAME=dify.key" \
-  "CERTBOT_EMAIL=sean.preusse@argenti.com.au" \
-  "CERTBOT_DOMAIN=assistant.argenti.com.au" \
+  "NGINX_SSL_CERT_FILENAME=your-cert.crt" \
+  "NGINX_SSL_CERT_KEY_FILENAME=your-key.key" \
+  "CERTBOT_EMAIL=your-email@example.com" \
+  "CERTBOT_DOMAIN=your-domain.example.com" \
   "CERTBOT_OPTIONS=--non-interactive --agree-tos"
 do
   key=$(echo "$var" | cut -d= -f1)
